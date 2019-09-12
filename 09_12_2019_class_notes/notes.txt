@@ -1,0 +1,4 @@
+cp <file1> <file2> - copies files
+mv <> <> - moves or renames files
+rm <> - removes files
+mv * <> - moves all files
