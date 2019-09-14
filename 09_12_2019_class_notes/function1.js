@@ -4,13 +4,21 @@
 // Gross Margin: The difference between revenue and COGS (Cost of Goods Sold). This is typically extremely high in Sales
 // Customer Churn Rate: The rate at which your customers are cancelling their subscriptions.
 
-var ARPA = 1250;
 
-var GrossMargin = 8;
+var ltvFunction = function (ARPA, GrossMargin, CCR) {
 
-var CCR = 0.25;
+	var LTV = (ARPA*GrossMargin)/CCR;
+	return LTV;
 
-var LTV = (ARPA*GrossMargin)/CCR;
+}
 
-console.log(LTV);
+// circleAreaFunction returns the area of a circle in square feet for a circle with a parameter of radius in square feet
+var circleAreaFunction = function(radius) {
+	var pi = 3.14;
+	var area = pi*radius*radius;
+	return area;
+}
+console.log("Barbie thinks the area should be " + circleAreaFunction (2) + " square feet.");
+console.log("Nichola thinks the area should be " + circleAreaFunction (3) + " square feet.");
+
 
