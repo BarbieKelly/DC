@@ -1,0 +1,3 @@
+mv <> moves or renames
+cp file1 file2 copies
+rm removes

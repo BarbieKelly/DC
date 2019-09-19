@@ -1,2 +1,4 @@
-some notes
+LAMP : linux, apache, mySQL, PHP
+MEAN: MongoDB, Express, Angular JS, Node JS
+
 
