@@ -1,11 +1,13 @@
-git init #initializes a git repository
+git git init #initializes a git repository
 git status #Tells us which files to push up
+
 git add -A #Adds all the files to be saved
 git commit -m "Description of what changed" #Describes how the files were changed
+git push -u origin master #Saves the files to git
+
+
 
 git remote add origin "" #url from github
-
-git push -u origin master #Saves the files to git
 
 git checkout -b [branch name] #creates a new branch
 
