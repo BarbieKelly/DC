@@ -24,35 +24,39 @@ var acceptable_currencies = [
 var value = 0;
 var price = 0;
 
+var display_available_items = function(){
+    for(i=0; i<items.length; i++) {
+        console.log(items[i].item + " $" + items[i].price);
+        console.log("");
+    }
+}
 // function tests the parameter coin to see if it is in the acceptable currencies list (true/false)
 var coin_accepted = function(coin){
-    var x = false;
     for (i=0; i<acceptable_currencies.length; i++) {
         if(coin == acceptable_currencies[i].coin){
-            x =true;
+            return true;
         }
     }
-    return x;
+    return false;
 }
 
 // function returns the value of the parameter coin from the list of coins in the acceptable currencies array
 var get_coin_value = function(coin){
-    for (z=0; z<acceptable_currencies.length; z++){
-        if (coin == acceptable_currencies[z].coin){
-            value = acceptable_currencies[z].value;
+    for (i=0; i<acceptable_currencies.length; i++){
+        if (coin == acceptable_currencies[i].coin){
+            value = acceptable_currencies[i].value;
         }
     }   
 }
 
 // function tests to see if the selection is valid and returns true / false
 var valid_selection = function (selection) {
-    var valid_selection = false;
     for (var j = 0; j<items.length; j++){
         if(selection == items[j].item){
-            valid_selection = true;
+            return true;
         }
     }
-    return valid_selection
+    return false;
 }
 
 // function changes the value of variable price to the price of the parameter selection
@@ -68,7 +72,7 @@ var buy = function (coins_inserted, selection) {
     price = 0;
     total = 0;
     change = [];
-    console.log(items);
+    display_available_items();
     // loops through an array of coins inserted and adds the value of the coins to the total. if the currency is invalid
     // the coin is pushed to the change array
     for (var z=0; z<coins_inserted.length; z++){
@@ -103,7 +107,6 @@ var buy = function (coins_inserted, selection) {
             change.push("$" + total);
             console.log(change);
         }
-
     }
     else {
         console.log("Invalid Selection. Please take your change");
@@ -113,7 +116,7 @@ var buy = function (coins_inserted, selection) {
 }
 
 for (var x=0; x<buyers.length; x++){
+    console.log(buyers[x]);
     buy(buyers[x].coins_inserted, buyers[x].selection);
+    console.log("");
 }
-
-
