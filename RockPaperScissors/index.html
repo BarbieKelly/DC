@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Barbie's Rock Paper Scissors</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    </head>
+    <body>
+        <h1 class="text-center">Rock Paper Scissors</h1>
+        <div id="container">
+            <div class="row">
+                    <div class="col player_container" id="Player1_Container">
+                        <h3 class="text-center">Player 1</h3>
+                        <div class="row">
+                            <div class="col text-right score_text">Score:</div>
+                            <div class="col text-left score_area" id="Player_1_Score">Score area</div>
+                        </div>
+                        <div class="row text-center button_row">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-primary" id="rock_button">Rock</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-primary" id="paper_button">Paper</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-primary" id="scissors_button">Scissors</button>
+                            </div>
+                        </div>
+                        <div class="row text-center play_area" id="Player_1_Play_Area">
+
+                        </div>
+
+                    </div>
+                    <div class="col player_container" id="Computer_Container">
+                        <h3 class="text-center">Computer</h3>
+                        <div class="row">
+                                <div class="col text-right score_text">Score:</div>
+                                <div class="col text-left score_area" id="Computer_Score">Score area</div>
+                        </div>
+                        <div class="row text-center button_row"></div>
+                        <div class="row text-center play_area" id="Computer_Play_Area">
+
+                        </div>
+                    </div>
+            </div>
+        </div>    
+    </body>
+    <script type="text/javascript" src="script.js"></script>
+</html>
