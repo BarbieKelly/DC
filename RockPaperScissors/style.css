@@ -1,0 +1,32 @@
+h1{
+    color: red;
+}
+
+.player_container {
+    height: 90vh;
+}
+
+#Player1_Container{
+    border-right: 1px solid black;
+}
+
+#Computer_Container{
+    border-left: 1px solid black;
+}
+
+.score_text {
+    font-weight: bold;
+}
+
+.button_row {
+    height: 38px;
+}
+
+.play_area {
+    height: 70vh;
+}
+
+i {
+    margin: auto;
+    size: 9x;
+}

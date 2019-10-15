@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interval Practice</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>My List</h1>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var container = document.getElementById("container");
+        var myArray = ["P", "i", "z", "z", "a", "PIZZA!!!!"];
+        var list = document.createElement("ol");
+
+        container.appendChild(list);
+
+        var createListItem = function(){
+            if(myArray.length > 0){
+                var listitem = document.createElement("li");
+                listitem.innerHTML = myArray[0];
+                list.appendChild(listitem);
+                myArray.shift();
+            }
+
+            else {
+                clearInterval(myIntervalFunction);
+            }
+            
+        }
+
+        var myIntervalFunction = function(){
+                setInterval(function(){createListItem();}, 500);
+        }
+
+        myIntervalFunction();
+        
+
+    </script>
+</html>
+
+
