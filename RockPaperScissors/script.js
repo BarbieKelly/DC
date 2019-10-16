@@ -27,103 +27,72 @@ var clearScreen = function (){
 
 var rockPaperScissors = function(){
     play_area.innerHTML = "";
+    var interval = 500;
 
     setTimeout(function(){
-        getRock("Player 1");
-        getRock("Computer");
-    }, 500);
-
-    setTimeout(function(){
-        clearScreen();
-    }, 1000);
-
-    setTimeout(function(){
-        getPaper("Player 1");
-        getPaper("Computer");
-    }, 1500);
+        getPiece("Player 1", "rock");
+        getPiece("Computer", "rock");
+    }, interval);
 
     setTimeout(function(){
         clearScreen();
-    }, 2000);
+    }, interval*2);
 
     setTimeout(function(){
-        getScissors("Player 1");
-        getScissors("Computer");
-    }, 2500);
+        getPiece("Player 1", "paper");
+        getPiece("Computer", "paper");
+    }, interval*3 );
 
     setTimeout(function(){
         clearScreen();
-    }, 3000);
+    }, interval*4 );
+
+    setTimeout(function(){
+        getPiece("Player 1", "scissors");
+        getPiece("Computer", "scissors");
+    }, interval*5 );
+
+    setTimeout(function(){
+        clearScreen();
+    }, interval*6 );
 }
 
-
-var getRock = function(player){
-    var rock = document.createElement("i");
-    rock.className ="far fa-hand-rock fa-9x";
-
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(rock);
+var getPiece = function (player, choice) {
+    var piece = document.createElement("i");
+    if (choice == "rock") {
+        piece.className = "far fa-9x fa-hand-rock";
     }
-
+    else if (choice == "paper") {
+        piece.className = "far fa-9x fa-hand-paper";
+    }
     else {
-        Computer_Play_Area.appendChild(rock);
+        piece.className = "far fa-9x fa-hand-scissors";
     }
-}
-
-var getPaper = function(player){
-    var paper = document.createElement("i");
-    paper.className ="far fa-hand-paper fa-9x";
-
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(paper);
+    if (player == "Player 1") {
+        Player_1_Play_Area.appendChild(piece);
     }
-
     else {
-        Computer_Play_Area.appendChild(paper);
+        Computer_Play_Area.appendChild(piece);
     }
 }
 
-var getScissors = function(player){
-    var scissors = document.createElement("i");
-    scissors.className ="far fa-hand-scissors fa-9x";
-
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(scissors);
-    }
-
-    else {
-        Computer_Play_Area.appendChild(scissors);
-    }
-}
 
 var ComputerChoice = function () {
-    var x = Math.random();
-
-    if(x <= 0.33){
-        currentComputerChoice = 0;
-    }
-
-    else if (x >= 0.66){
-        currentComputerChoice = 1;
-    }
-
-    else {
-        currentComputerChoice = 2;
-    }
+    return Math.floor(Math.random*3);
 }
 
 var ComputerRoll = function() {
     ComputerChoice();
     if (currentComputerChoice == 0) {
-        getRock("Computer")
+        getPiece("Computer", "rock")
     }
 
     else if (currentComputerChoice == 1){
-        getPaper("Computer")
+        getPiece("Computer", "paper")
     }
 
     else {
-        getScissors("Computer")
+        getPiece("Computer", "scissors")
     }
 }
 
@@ -140,7 +109,7 @@ var play = function (){
         rockPaperScissors();
 
         setTimeout(function(){
-            getRock("Player 1");
+            getPiece("Player 1", "rock");
             Player_1_choice = 0;
             ComputerRoll();
         }, 3500);
@@ -154,7 +123,7 @@ var play = function (){
         rockPaperScissors();
 
         setTimeout(function(){
-            getPaper("Player 1");
+            getPiece("Player 1", "paper");
             Player_1_choice = 1;
             ComputerRoll();
         }, 3500);
@@ -168,7 +137,7 @@ var play = function (){
         rockPaperScissors();
 
         setTimeout(function(){
-            getScissors("Player 1");
+            getPiece("Player 1", "scissors");
             Player_1_choice = 2;
             ComputerRoll();
         }, 3500);
@@ -200,13 +169,13 @@ var play = function (){
                 alert("YOU LOSE!");
             }
 
-            if (currentComputerChoice == 2){
+            else if (currentComputerChoice == 2){
                 winner = "Player 1";
                 givePoints("Player 1");
                 alert("YOU WIN!");
             }
 
-            if (currentComputerChoice == 0) {
+            else {
                 alert("YOU TIE!");
             }
         }
@@ -219,13 +188,13 @@ var play = function (){
                 alert("YOU WIN!");
             }
 
-            if (currentComputerChoice == 2){
+            else if (currentComputerChoice == 2){
                 winner = "Computer";
                 givePoints("Computer");
                 alert("YOU LOSE!");
             }
 
-            if (currentComputerChoice == 1) {
+            else {
                 alert("YOU TIE!");
             }
         }
@@ -237,13 +206,13 @@ var play = function (){
                 alert("YOU LOSE!");
             }
 
-            if (currentComputerChoice == 1){
+            else if (currentComputerChoice == 1){
                 winner = "Player 1";
                 givePoints("Player 1");
                 alert("YOU WIN!");
             }
 
-            if (currentComputerChoice == 2) {
+            else {
                 alert("YOU TIE!");
             }
         }
@@ -251,4 +220,4 @@ var play = function (){
     }
 }
 
-play();
+play();    
