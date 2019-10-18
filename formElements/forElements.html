@@ -1,0 +1,96 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+    <script type="text/javascript">
+
+        /**
+        * password: https://www.w3schools.com/tags/att_input_type_password.asp
+        * textarea : https://www.w3schools.com/tags/tag_textarea.asp
+        * text: https://www.w3schools.com/tags/tag_input.asp
+        * checkbox: https://www.w3schools.com/tags/att_input_type_checkbox.asp
+        *
+        * Your task is to:
+        * 1. Iterate through the array, and create an element based on the type. 
+        * 2. The properites disabled, id, value and class will relate to that elements object
+        * and should appear in the html. For example, id : "my-text" should be <input type="text" id="my-text" />
+        * 3. As each form element is created, a button should be created. When that button is clicked, is should update
+        * the approrpiate object in the data array. For example, value : "A line of text" at array index 0 should be updated
+        * when the button for the text input is clicked
+        */
+
+        var container = document.getElementById("container");
+        var data = [
+            {
+                type: "text",
+                disabled : false,
+                id : "my-text",
+                value : "A line of text",
+                class : "form-control",
+                maxLength: 255
+            },
+            {
+                type: "password",
+                disabled : false,
+                id : "my-password",
+                value : "",
+                class : "form-control"
+            },
+            {
+                type: "textarea",
+                disabled : false,
+                id : "my-textarea",
+                value : "Hello World, How Are You?",
+                style: "background-color: blue;",
+                class : "form-control"
+            },
+            {
+                type: "checkbox",
+                disabled : true,
+                id : "my-checkbox",
+                value : "1",
+                class : ""
+            },
+        ];
+        
+        var buttonFunction = function () {
+            console.log(this);
+        }
+        var myFunction = function (item, index) {
+            if (item.type == "password" || item.type == "text" || item.type == "checkbox"){
+                var newElement = document.createElement("input");
+                newElement.type = item.type;
+            }
+
+            if (item.type == "textarea"){
+                var newElement = document.createElement("textarea");
+            }
+            
+            if(item.disabled) {
+                newElement.setAttribute("disabled", item.disabled);
+            }
+
+            newElement.setAttribute("id", item.id);
+            newElement.setAttribute("value", item.value);
+            newElement.className = item.class;
+            container.appendChild(newElement);
+
+            var newButton = document.createElement("button")
+            newButton.setAttribute("onclick", "buttonFunction()");
+            newButton.setAttribute("type", "button");
+            newButton.setAttribute("className", "btn btn-outline-primary");
+            newButton.setAttribute("id", index);
+            newButton.innerHTML = "Submit";
+
+            container.appendChild(newButton);
+            container.appendChild(document.createElement("hr"));
+        }
+        
+        data.forEach(myFunction);
+        
+    </script>
+</html>

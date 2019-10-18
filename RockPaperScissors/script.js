@@ -78,7 +78,7 @@ var getPiece = function (player, choice) {
 
 
 var ComputerChoice = function () {
-    return Math.floor(Math.random*3);
+    currentComputerChoice = Math.floor(Math.random*3);
 }
 
 var ComputerRoll = function() {
