@@ -1,121 +1,119 @@
 var container = document.getElementById("container");
-var Player_1_Score_area = document.getElementById("Player_1_Score");
-var Computer_Score_area = document.getElementById("Computer_Score");
 var Player_1_Play_Area = document.getElementById("Player_1_Play_Area");
 var Computer_Play_Area = document.getElementById("Computer_Play_Area");
+var Player_1_Score_Area = document.getElementById("Player_1_Score_Area");
+var Computer_Score_Area = document.getElementById("Computer_Score_Area");
 var play_area = document.getElementsByClassName("play_area");
-var currentPlayer = "Player 1";
-var Player_1_Score = 0;
-var Computer_Score = 0;
-var Player_1_choice = 0;
-var currentComputerChoice = 0;
-var winner = "";
 var rockButton = document.getElementById("rock_button");
 var paperButton = document.getElementById("paper_button");
 var scissorsButton = document.getElementById("scissors_button");
+var clearButton = document.getElementById("clear_button");
+
+var currentPlayer = "Player 1";
+var Player_1_choice = 0;
+var currentComputerChoice = 0;
+var winner = "";
+var Player_1_Score = 0;
+var Computer_Score = 0;
+
+Player_1_Score_Area.innerHTML = Player_1_Score;
+Computer_Score_Area.innerHTML = Computer_Score;
 
 var clearScreen = function (){
     Player_1_Play_Area.innerHTML = "";
     Computer_Play_Area.innerHTML = "";
 }
 
+
 var rockPaperScissors = function(){
     play_area.innerHTML = "";
+    var interval = 500;
+
     setTimeout(function(){
-        getRock("Player 1");
-        getRock("Computer");
-    }, 500);
+        getPiece("Player 1", "rock");
+        getPiece("Computer", "rock");
+    }, interval);
+
     setTimeout(function(){
         clearScreen();
-    }, 1000);
+    }, interval*2);
+
     setTimeout(function(){
-        getPaper("Player 1");
-        getPaper("Computer");
-    }, 1500);
-    setTimeout(function(){
-        clearScreen();
-    }, 2000);
-    setTimeout(function(){
-        getScissors("Player 1");
-        getScissors("Computer");
-    }, 2500);
+        getPiece("Player 1", "paper");
+        getPiece("Computer", "paper");
+    }, interval*3 );
+
     setTimeout(function(){
         clearScreen();
-    }, 3000);
+    }, interval*4 );
+
+    setTimeout(function(){
+        getPiece("Player 1", "scissors");
+        getPiece("Computer", "scissors");
+    }, interval*5 );
+
+    setTimeout(function(){
+        clearScreen();
+    }, interval*6 );
 }
 
-
-var getRock = function(player){
-    var rock = document.createElement("i");
-    rock.className ="far fa-hand-rock fa-9x";
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(rock);
+var getPiece = function (player, choice) {
+    var piece = document.createElement("i");
+    if (choice == "rock") {
+        piece.className = "far fa-9x fa-hand-rock";
+    }
+    else if (choice == "paper") {
+        piece.className = "far fa-9x fa-hand-paper";
     }
     else {
-        Computer_Play_Area.appendChild(rock);
+        piece.className = "far fa-9x fa-hand-scissors";
+    }
+    if (player == "Player 1") {
+        Player_1_Play_Area.appendChild(piece);
+    }
+    else {
+        Computer_Play_Area.appendChild(piece);
     }
 }
 
-var getPaper = function(player){
-    var paper = document.createElement("i");
-    paper.className ="far fa-hand-paper fa-9x";
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(paper);
-    }
-    else {
-        Computer_Play_Area.appendChild(paper);
-    }
-}
-
-var getScissors = function(player){
-    var scissors = document.createElement("i");
-    scissors.className ="far fa-hand-scissors fa-9x";
-    if (player =="Player 1"){
-        Player_1_Play_Area.appendChild(scissors);
-    }
-    else {
-        Computer_Play_Area.appendChild(scissors);
-    }
-}
 
 var ComputerChoice = function () {
-    var x = Math.random();
-    if(x <= 0.33){
-        currentComputerChoice = 0;
-    }
-    else if (x >= 0.66){
-        currentComputerChoice = 1;
-    }
-    else {
-        currentComputerChoice = 2;
-    }
+    return Math.floor(Math.random*3);
 }
 
 var ComputerRoll = function() {
     ComputerChoice();
     if (currentComputerChoice == 0) {
-        getRock("Computer")
+        getPiece("Computer", "rock")
     }
+
     else if (currentComputerChoice == 1){
-        getPaper("Computer")
+        getPiece("Computer", "paper")
     }
+
     else {
-        getScissors("Computer")
+        getPiece("Computer", "scissors")
     }
 }
 
 
 var play = function (){
-    Player_1_Score_area.innerHTML = Player_1_Score;
-    Computer_Score_area.innerHTML = Computer_Score;
-
+    clearButton.onclick = function(){
+        Player_1_Score = 0;
+        Computer_Score = 0;
+        Player_1_Score_Area.innerHTML = Player_1_Score;
+        Computer_Score_Area.innerHTML = Computer_Score;
+    }
+    
     rockButton.onclick = function(){
         rockPaperScissors();
+
         setTimeout(function(){
-            getRock("Player 1");
+            getPiece("Player 1", "rock");
             Player_1_choice = 0;
             ComputerRoll();
         }, 3500);
+
         setTimeout(function(){
             determineWinnerFunction();
         }, 5000);
@@ -123,11 +121,13 @@ var play = function (){
     
     paperButton.onclick = function(){
         rockPaperScissors();
+
         setTimeout(function(){
-            getPaper("Player 1");
+            getPiece("Player 1", "paper");
             Player_1_choice = 1;
             ComputerRoll();
         }, 3500);
+
         setTimeout(function(){
             determineWinnerFunction();
         }, 5000);
@@ -135,11 +135,13 @@ var play = function (){
     
     scissorsButton.onclick = function(){
         rockPaperScissors();
+
         setTimeout(function(){
-            getScissors("Player 1");
+            getPiece("Player 1", "scissors");
             Player_1_choice = 2;
             ComputerRoll();
         }, 3500);
+
         setTimeout(function(){
             determineWinnerFunction();
         }, 5000);
@@ -149,62 +151,73 @@ var play = function (){
         if (winningPlayer == "Player 1") {
             Player_1_Score += 1;
         }
+
         if (winningPlayer == "Computer") {
             Computer_Score += 1;
         }
-        console.log("Player 1 Score is " + Player_1_Score);
-        console.log("Computer Score is " + Computer_Score);
+
+        Player_1_Score_Area.innerHTML = Player_1_Score;
+        Computer_Score_Area.innerHTML = Computer_Score;
     }
     
     var determineWinnerFunction =function (){
         if (Player_1_choice == 0){
+
             if(currentComputerChoice == 1){
                 winner = "Computer";
                 givePoints("Computer");
                 alert("YOU LOSE!");
             }
-            if (currentComputerChoice == 2){
+
+            else if (currentComputerChoice == 2){
                 winner = "Player 1";
                 givePoints("Player 1");
                 alert("YOU WIN!");
             }
-            if (currentComputerChoice == 0) {
+
+            else {
                 alert("YOU TIE!");
             }
         }
+
         else if (Player_1_choice == 1){
+
             if(currentComputerChoice == 0){
                 winner = "Player 1";
                 givePoints("Player 1");
                 alert("YOU WIN!");
             }
-            if (currentComputerChoice == 2){
+
+            else if (currentComputerChoice == 2){
                 winner = "Computer";
                 givePoints("Computer");
                 alert("YOU LOSE!");
             }
-            if (currentComputerChoice == 1) {
+
+            else {
                 alert("YOU TIE!");
             }
         }
+
         else {
             if(currentComputerChoice == 0){
                 winner = "Computer";
                 givePoints("Computer");
                 alert("YOU LOSE!");
             }
-            if (currentComputerChoice == 1){
+
+            else if (currentComputerChoice == 1){
                 winner = "Player 1";
                 givePoints("Player 1");
                 alert("YOU WIN!");
             }
-            if (currentComputerChoice == 2) {
+
+            else {
                 alert("YOU TIE!");
             }
         }
         clearScreen();
     }
-    
 }
 
-play();
+play();    
